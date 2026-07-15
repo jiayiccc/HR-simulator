@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>完蛋！我被HR包围了</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ════════ SCENE 1: TITLE / START ════════ -->
+  <div id="scene-title" class="scene active">
+    <div class="title-bg">
+      <img class="title-hero-img" src="assets/hero-surrounded.jpg" alt="">
+    </div>
+    <div class="title-content">
+      <div class="title-stars">✦ ✦ ✦</div>
+      <h1 class="game-title">完蛋！我被HR包围了</h1>
+      <p class="game-subtitle">职场新手小白入职体验&避坑模拟器</p>
+      <p class="game-tagline">被围攻过一次，真上场就不慌</p>
+      <button id="btn-start" class="btn-primary">开始游戏</button>
+    </div>
+  </div>
+
+  <!-- ════════ SCENE 2: HR OFFICE DOOR ════════ -->
+  <div id="scene-door" class="scene">
+    <div class="corridor">
+      <div class="wall-left"></div>
+      <div class="wall-right"></div>
+      <div class="floor"></div>
+      <div class="door-frame">
+        <div class="door-sign">
+          <span class="sign-text">HR 办公室</span>
+          <span class="sign-sub">Human Resources</span>
+        </div>
+        <div class="door" id="game-door">
+          <div class="door-handle"></div>
+          <div class="door-window"></div>
+          <div class="door-text">点击推门进入</div>
+        </div>
+      </div>
+      <div class="door-hint">点击门进入办公室</div>
+    </div>
+  </div>
+
+  <!-- ════════ SCENE 3: OFFICE INTERIOR ════════ -->
+  <div id="scene-office" class="scene">
+    <div class="office-room">
+      <div class="office-wall-back"></div>
+      <div class="office-floor"></div>
+      <div class="desk-setup">
+        <div class="desk">
+          <div class="desk-surface"></div>
+          <div class="desk-leg-left"></div>
+          <div class="desk-leg-right"></div>
+        </div>
+        <div class="monitor" id="game-monitor">
+          <div class="monitor-stand"></div>
+          <div class="monitor-base"></div>
+          <div class="monitor-screen" id="monitor-screen">
+            <div class="boot-screen">
+              <div class="boot-logo">💼</div>
+              <div class="boot-text">系统启动中...</div>
+              <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="office-chair"></div>
+      </div>
+      <div class="office-decor">
+        <div class="plant"></div>
+        <div class="bookshelf"></div>
+      </div>
+      <div class="office-hint">点击屏幕开始对话</div>
+    </div>
+  </div>
+
+  <!-- ════════ SCENE 4: COMPUTER / GAME UI ════════ -->
+  <div id="scene-computer" class="scene">
+    <div class="desktop">
+      <!-- Taskbar -->
+      <div class="taskbar">
+        <div class="taskbar-start">
+          <span class="taskbar-icon">💻</span>
+          <span>HR-OS</span>
+        </div>
+        <div class="taskbar-time" id="taskbar-time">10:00</div>
+      </div>
+
+      <!-- Chat App Window (薪资谈判) -->
+      <div class="chat-window" id="module-salary">
+        <div class="chat-titlebar">
+          <div class="chat-titlebar-left">
+            <span class="chat-app-icon">🗣️</span>
+            <span class="chat-app-name">AI HR 对话系统</span>
+          </div>
+          <div class="chat-titlebar-right">
+            <span class="win-btn">—</span>
+            <span class="win-btn">▢</span>
+            <span class="win-btn">✕</span>
+          </div>
+        </div>
+
+        <div class="chat-body">
+          <div class="chat-sidebar" id="sidebar-salary">
+            <div class="sidebar-header">对话场景</div>
+            <div class="sidebar-item active" data-module="salary">💰 薪资谈判</div>
+            <div class="sidebar-item" data-module="probation">📋 试用期避坑</div>
+            <div class="sidebar-item" data-module="performance">📖 职场规则手册</div>
+            <div class="sidebar-header">进度</div>
+            <div class="sidebar-stat">
+              <span class="stat-label">对话轮次</span>
+              <span class="stat-value" id="stat-turn">0</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="stat-label">当前得分</span>
+              <span class="stat-value" id="stat-score">100</span>
+            </div>
+            <div class="score-bar-wrap">
+              <div class="score-bar" id="score-bar" style="width:100%"></div>
+            </div>
+          </div>
+
+          <div class="chat-main">
+            <div class="chat-messages" id="chat-messages">
+              <!-- Messages injected by JS -->
+            </div>
+            <div class="chat-input-area" id="chat-input-area">
+              <div class="chat-choices" id="chat-choices">
+                <!-- Choices injected by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 试用期避坑容器 -->
+      <div class="probation-container" id="module-probation" style="display:none;">
+        <!-- 顶部时间线 -->
+        <div class="probation-header">
+          <div class="probation-day-badge">
+            <span class="day-label">入职第</span>
+            <span class="day-number" id="probation-day">1</span>
+            <span class="day-label">天</span>
+          </div>
+          <div class="probation-progress">
+            <div class="probation-progress-track">
+              <div class="probation-progress-fill" id="probation-progress-fill" style="width:1%"></div>
+            </div>
+            <div class="probation-progress-marks">
+              <span class="progress-mark">第1天</span>
+              <span class="progress-mark">第30天</span>
+              <span class="progress-mark">第60天</span>
+              <span class="progress-mark">第90天</span>
+            </div>
+          </div>
+          <button class="module-back-btn" data-back="salary">← 返回</button>
+        </div>
+
+        <!-- 桌面区域 -->
+        <div class="probation-desktop">
+          <div class="desktop-icon">
+            <div class="desktop-icon-img">📁</div>
+            <div class="desktop-icon-label">入职材料</div>
+          </div>
+          <div class="desktop-icon">
+            <div class="desktop-icon-img">📄</div>
+            <div class="desktop-icon-label">劳动合同.pdf</div>
+          </div>
+          <div class="desktop-icon" data-source="group">
+            <div class="desktop-icon-img">💬</div>
+            <div class="desktop-icon-label">工作群</div>
+          </div>
+          <div class="desktop-icon" data-source="email">
+            <div class="desktop-icon-img">📧</div>
+            <div class="desktop-icon-label">邮箱</div>
+          </div>
+          <div class="desktop-icon" data-source="worktalk">
+            <div class="desktop-icon-img">🟢</div>
+            <div class="desktop-icon-label">飞书</div>
+          </div>
+        </div>
+
+        <!-- 通知区域（右侧滑入） -->
+        <div class="probation-notifications" id="probation-notifications"></div>
+
+        <!-- 事件详情弹窗 -->
+        <div class="probation-modal" id="probation-modal" style="display:none;">
+          <div class="probation-modal-backdrop"></div>
+          <div class="probation-modal-content">
+            <div class="probation-modal-header">
+              <span class="modal-icon" id="modal-icon">💬</span>
+              <div class="modal-title-wrap">
+                <div class="modal-title" id="modal-title">事件标题</div>
+                <div class="modal-subtitle" id="modal-subtitle">第 X 天</div>
+              </div>
+            </div>
+            <div class="probation-modal-body">
+              <div class="modal-desc" id="modal-desc">事件描述...</div>
+              <div id="modal-email-view" style="display:none;"></div>
+              <div id="modal-chat-view" style="display:none;"></div>
+              <div id="modal-followup-view" style="display:none;"></div>
+              <div class="modal-choices" id="modal-choices">
+                <!-- 选项注入 -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 试用期复盘 -->
+        <div class="probation-review" id="probation-review" style="display:none;">
+          <div class="probation-review-card">
+            <div class="review-header">
+              <div class="review-icon">📋</div>
+              <h2 class="review-title">试用期通关报告</h2>
+            </div>
+            <div class="review-score-section">
+              <div class="review-score-label">总得分</div>
+              <div class="review-score-value" id="probation-final-score">0</div>
+              <div class="review-grade" id="probation-final-grade">B</div>
+            </div>
+            <div class="review-details" id="probation-review-details"></div>
+            <div class="review-tips" id="probation-review-tips"></div>
+            <div class="review-actions">
+              <button class="btn-primary" id="btn-probation-replay">再玩一次</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 职场规则手册容器 -->
+      <div class="performance-container" id="module-performance" style="display:none;">
+        <div class="performance-header">
+          <div class="performance-title">职场规则手册</div>
+          <div class="performance-subtitle">点击卡片探索概念，从劳动法到维权实战</div>
+          <button class="module-back-btn" data-back="salary">← 返回</button>
+        </div>
+        <div class="performance-grid" id="performance-grid">
+          <!-- 卡片由 JS 注入 -->
+        </div>
+
+        <!-- 卡片详情弹窗 -->
+        <div class="perf-modal" id="perf-modal" style="display:none;">
+          <div class="perf-modal-backdrop"></div>
+          <div class="perf-modal-content">
+            <div class="perf-modal-header">
+              <span class="perf-modal-icon" id="perf-modal-icon">📊</span>
+              <div class="perf-modal-title" id="perf-modal-title">标题</div>
+            </div>
+            <div class="perf-modal-body">
+              <div class="perf-section">
+                <div class="perf-section-label">概念解释</div>
+                <div class="perf-section-text" id="perf-modal-desc"></div>
+              </div>
+              <div class="perf-section">
+                <div class="perf-section-label">通俗版</div>
+                <div class="perf-section-text perf-layman" id="perf-modal-layman"></div>
+              </div>
+              <div class="perf-section" id="perf-modal-related-wrap">
+                <div class="perf-section-label">关联卡片</div>
+                <div class="perf-related-cards" id="perf-modal-related"></div>
+              </div>
+            </div>
+            <button class="perf-modal-close" id="perf-modal-close">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SCENE 5: REVIEW / SCORE ════════ -->
+  <div id="scene-review" class="scene">
+    <div class="review-bg"></div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-icon">🏆</div>
+        <h2 class="review-title">对话复盘</h2>
+      </div>
+      <div class="review-score-section">
+        <div class="review-score-label">最终得分</div>
+        <div class="review-score-value" id="final-score">100</div>
+        <div class="review-grade" id="final-grade">A</div>
+      </div>
+      <div class="review-details" id="review-details">
+        <!-- Details injected by JS -->
+      </div>
+      <div class="review-tips" id="review-tips">
+        <!-- Tips injected by JS -->
+      </div>
+      <div class="review-actions">
+        <button class="btn-primary" id="btn-replay">再玩一次</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ TOAST ════════ -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/dialogue-data.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
